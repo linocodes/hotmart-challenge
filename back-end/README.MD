@@ -1,4 +1,4 @@
-##Contextualização
+## Contextualização
 
 Imagine que você é desenvolvedor de uma empresa de tecnologia e sua nova tarefa é construir uma parte de um marketplace de produtos cujo o número de acesso é alto.
 
@@ -20,7 +20,7 @@ Uma das partes mais importante para o marketplace que está sendo construído se
 
 Score = X + Y + X
 
-##O desafio
+## O desafio
 
 Sua tarefa consiste em:
 
@@ -31,19 +31,19 @@ Sua tarefa consiste em:
 - Informação geral = {dataAtual, termo pesquisado}
 - Todos os serviços devem ser auditados.
 
-##Observações:
+## Observações:
 -   Para buscar a quantidade de notícias de uma determinada categoria você pode utilizar a api https://newsapi.org/ . As notícias podem ser (D-1), ou seja, do dia anterior a data corrente do sistema.
 Criar o mapeamento das entidades para atender ao cenário criado.
 Crie uma carga inicial para as entidades.
 	
-##O que nós esperamos do seu teste
+## O que nós esperamos do seu teste
 - Queremos entender sua proficiência técnica, raciocínio analítico e apresentação de resultados. 
 
 - Você não precisa necessariamente fazer tudo que foi proposto porém, queremos ter uma clara percepção sobre como você resolve problemas.
 
 - Para isso fique a vontade para incluir/alterar/remover Entidades, atributos nas entidades existem, tecnologias, jobs, e o que mais sentir necessidade para atender melhor a demanda.
 
-##Mais especificamente na entrega do projeto gostaríamos de ver:
+## Mais especificamente na entrega do projeto gostaríamos de ver:
 
 - Documentação.
 - Utilização adequada das bibliotecas.
