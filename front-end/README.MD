@@ -14,14 +14,9 @@ Para construí-la, você irá receber:
 
 Sua tarefa consiste em montar e integrar com a API as seguintes estruturas da página:
 
-
-
 1. Header
 
-
 ![Alt text](assets/images/header.jpeg?raw=true "Header")
-
-
 
 *   Exibir dados da solicitação
     *   Nome do Solicitante
@@ -34,100 +29,44 @@ Sua tarefa consiste em montar e integrar com a API as seguintes estruturas da p�
     *   Quantidade de pessoas
     *   Flag - café da manhã
 *   Permitir Atribuição de Analista
+
 2. Timeline
 
-
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image2.png "image_tooltip")
-
-
-
+![Alt text](assets/images/timeline.jpeg?raw=true "Timeline")
 
 *   Criar uma timeline de itens
     *   Cada tipo de item deve apresentar um layout específico. \
 
 
-
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
-
-
-
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image4.png "image_tooltip")
-
-
-
+![Alt text](assets/images/item.jpeg?raw=true "Item")
+![Alt text](assets/images/item-detail.jpeg?raw=true "Item Detail")
 
 *   Despesa: Alimentação, Viagem, etc..
     *   É editável
     *   É possível visualizar e baixar anexos
+
 3. Rodapé
 
-
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image5.png "image_tooltip")
-
-
+![Alt text](assets/images/rodape.jpeg?raw=true "Rodapé")
 
 
 *   Ações disponíveis: Cancelar e Aprovar
 *   Status: Aberto, Em Aprovação e Concluído
+
 4. Sidebar
 
-
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image6.png "image_tooltip")
-
-
-
+![Alt text](assets/images/sidebar.jpeg?raw=true "Sidebar")
 
 *   Exibir o status da solicitação
 *   Exibir a lista de moedas envolvidas (Todas as moedas que tem alguma despesa)
+
 5. Ações
 
-
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image7.png "image_tooltip")
-
-
-
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image8.png "image_tooltip")
-
-
-
+*   Baixar todos os anexos das despesas
+![Alt text](assets/images/barra-acoes.jpeg?raw=true "Barra Ações")
 
 *   Adicionar despesa
-*   Baixar todos os anexos das despesas
-
-Observações:
-
-
-
-*   [TO DO]
-
+![Alt text](assets/images/despesa.jpeg?raw=true "Adicionar Despesa")
 	
 
 
