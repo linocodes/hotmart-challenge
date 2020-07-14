@@ -6,8 +6,6 @@ Este teste consiste na reprodução de uma das funcionalidades desta plataforma:
 
 Para construí-la, você irá receber:
 
-
-
 *   O layout da tela disponível no Zeplin
 *   A listagem de endpoints para trazer os dados da tela
 
@@ -21,12 +19,7 @@ Sua tarefa consiste em montar e integrar com a API as seguintes estruturas da p�
 1. Header
 
 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image1.png "image_tooltip")
-
+![Alt text](assets/images/header.jpeg?raw=true "Title"
 
 
 
