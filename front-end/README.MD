@@ -19,7 +19,7 @@ Sua tarefa consiste em montar e integrar com a API as seguintes estruturas da pÃ
 1. Header
 
 
-![Alt text](assets/images/header.jpeg?raw=true "Title"
+![Alt text](assets/images/header.jpeg?raw=true "Header")
 
 
 
