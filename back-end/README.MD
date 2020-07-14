@@ -50,7 +50,8 @@ Crie uma carga inicial para as entidades.
 - Código escrito da maneira mais semântica possível, legibilidade importa tanto quanto performance, muitas vezes um não precisa comprometer o outro.
 - Desacoplamento e uma clara Hierarquia entre componentes do sistema.
 - Testes automatizados.
-- O que nós ficaríamos felizes de ver em seu teste
+
+## O que nós ficaríamos felizes de ver em seu teste
 - Tolerância a falha, na chamada da lib externa é possível implementar uma tolerância para deixar o serviço mais robusto.
 - Cache - pesquise alguma biblioteca de cache para tornar a busca mais rápida
 - Suporte a paginação na listagem dos produtos
@@ -67,7 +68,8 @@ Crie uma carga inicial para as entidades.
 - Não atendimento aos objetivos propostos.
 - Ver um código muito ilegível.
 - Não ter documentação com instruções de como rodar o seu código.
-- O que avaliaremos de seu teste
+
+## O que avaliaremos de seu teste
 - Alcance dos objetivos propostos.
 - Semântica, estrutura, legibilidade, manutenibilidade, escalabilidade do seu código e suas tomadas de decisões.
 - Organização do projeto.
