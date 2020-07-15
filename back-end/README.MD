@@ -37,7 +37,7 @@ Criar o mapeamento das entidades para atender ao cenário criado.
 Crie uma carga inicial para as entidades.
 	
 ## O que nós esperamos do seu teste
-- Queremos entender sua proficiência técnica, raciocínio analítico e apresentação de resultados. 
+- Queremos entender sua proficiência técnica, raciocínio analítico (dê preferência para commits curtos e explicativos) e apresentação de resultados. 
 
 - Você não precisa necessariamente fazer tudo que foi proposto porém, queremos ter uma clara percepção sobre como você resolve problemas.
 
