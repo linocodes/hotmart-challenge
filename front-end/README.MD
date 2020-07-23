@@ -127,4 +127,4 @@ Mais especificamente na entrega do projeto gostaríamos de ver:
 * Status da API: `https://api-front-end-challenge.buildstaging.com/api/status`
 * Dados do Header: `https://api-front-end-challenge.buildstaging.com/api/header`
 * Dados da Timeline: `https://api-front-end-challenge.buildstaging.com/api/timeline`
-* Dados da Sidebar: `https://api-front-end-challenge.buildstaging.com/api/sidebar
+* Dados da Sidebar: `https://api-front-end-challenge.buildstaging.com/api/sidebar`
