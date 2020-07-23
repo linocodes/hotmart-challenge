@@ -4,10 +4,10 @@ Na Hotmart as demandas internas são tão importantes quanto as externas. Aqui, 
 
 Este teste consiste na reprodução de uma das funcionalidades desta plataforma: A tela de solicitação de antecipações e reembolsos.
 
-Para construí-la, você irá receber: (ao final da página)
+Para construí-la, você irá receber:
 
 *   O layout da tela disponível no Zeplin
-*   A listagem de endpoints para trazer os dados da tela
+*   A [listagem de endpoints](#endpoints) para trazer os dados da tela
 
 
 ## **O desafio**
