@@ -4,7 +4,7 @@ Na Hotmart as demandas internas são tão importantes quanto as externas. Aqui, 
 
 Este teste consiste na reprodução de uma das funcionalidades desta plataforma: A tela de solicitação de antecipações e reembolsos.
 
-Para construí-la, você irá receber:
+Para construí-la, você irá receber: (ao final da página)
 
 *   O layout da tela disponível no Zeplin
 *   A listagem de endpoints para trazer os dados da tela
@@ -119,6 +119,12 @@ Mais especificamente na entrega do projeto gostaríamos de ver:
 
 ### **Pré-requisitos**
 
-
-
 *   Utilização de Javascript "puro" ou os frameworks React ou Vue;
+
+
+### **Endpoints**
+
+* Status da API: `https://api-front-end-challenge.buildstaging.com/api/status`
+* Dados do Header: `https://api-front-end-challenge.buildstaging.com/api/header`
+* Dados da Timeline: `https://api-front-end-challenge.buildstaging.com/api/timeline`
+* Dados da Sidebar: `https://api-front-end-challenge.buildstaging.com/api/sidebar
