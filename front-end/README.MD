@@ -6,7 +6,7 @@ Este teste consiste na reprodução de uma das funcionalidades desta plataforma:
 
 Para construí-la, você irá receber:
 
-*   O layout da tela disponível no Zeplin
+*   O [layout da tela](#layout) disponível no Zeplin
 *   A [listagem de endpoints](#endpoints) para trazer os dados da tela
 
 
@@ -128,3 +128,7 @@ Mais especificamente na entrega do projeto gostaríamos de ver:
 * Dados do Header: `https://api-front-end-challenge.buildstaging.com/api/header`
 * Dados da Timeline: `https://api-front-end-challenge.buildstaging.com/api/timeline`
 * Dados da Sidebar: `https://api-front-end-challenge.buildstaging.com/api/sidebar`
+
+### **Layout**
+
+Crie sua conta grátis no [Zeplin](https://zeplin.io/) e solicite permissão para acessar as [telas](https://zpl.io/VKMGOg8) enviando seu usuário.
