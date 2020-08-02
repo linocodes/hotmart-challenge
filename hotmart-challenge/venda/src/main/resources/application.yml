@@ -1,0 +1,43 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /crud
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: hotmart
+    password: desafio
+    url: jdbc:postgresql://localhost:5432/challenge
+    platform: postgres
+    initialization-mode: always
+    continue-on-error: true
+  jpa:
+    open-in-view: true
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest    
+
+hotmart:
+  challlenge:
+    filaVenda: FilaVenda
+   
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: method
+  api-docs:
+    path: /api-docs
+  version: @springdoc.version@
+  
+
+ 
+
+  
+  
