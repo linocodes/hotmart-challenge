@@ -12,20 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.hotmart.challenge.model.generic.Auditable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import br.com.hotmart.challenge.model.entity.generic.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @Entity
-public class Produto extends Auditable implements Serializable {
+public class Produto extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -6271560923378223432L;
 
@@ -44,7 +44,7 @@ public class Produto extends Auditable implements Serializable {
 	@Column(nullable = false)
 	private String descricao;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 

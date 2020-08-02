@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.hotmart.challenge.model.dto.ProdutoDto;
 import br.com.hotmart.challenge.model.entity.Produto;
-import br.com.hotmart.challenge.service.generic.AbstractService;
+import br.com.hotmart.challenge.service.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -36,15 +37,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class ProdutoController {
 
 	@Autowired
-	private AbstractService<Produto, Long> service;
+	private ProdutoService service;
 
 	@Operation(summary = "Listar todos dos produtos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Produtos encontrados", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Produto.class))) }),
 			@ApiResponse(responseCode = "404", description = "Não existe produtos no momento", content = @Content) })
 	@GetMapping
-	public ResponseEntity<List<Produto>> getAllProdutos() {
-		return new ResponseEntity<>(service.list(), HttpStatus.OK);
+	public ResponseEntity<List<ProdutoDto>> getAllProdutos() {
+		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
 
 	@Operation(summary = "Pesquisar o Produto por id")
@@ -54,9 +55,9 @@ public class ProdutoController {
 			@ApiResponse(responseCode = "400", description = "Id inválido", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Produto não encontrado", content = @Content) })
 	@GetMapping(value = "{id}")
-	public ResponseEntity<Produto> getProdutoById(
+	public ResponseEntity<ProdutoDto> getProdutoById(
 			@Parameter(description = "id do produto para pesquisa") @PathVariable("id") Long id) {
-		return new ResponseEntity<>(service.find(id), HttpStatus.OK);
+		return new ResponseEntity<>(service.toDto(service.find(id)), HttpStatus.OK);
 	}
 
 	@Operation(summary = "Deletar o Produto")
@@ -75,10 +76,10 @@ public class ProdutoController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class)) }),
 			@ApiResponse(responseCode = "404", description = "Nenhum Produto existe com o id fornecido", content = @Content) })
 	@PutMapping("/{id}")
-	public ResponseEntity<Produto> updateProduto(
+	public ResponseEntity<ProdutoDto> updateProduto(
 			@Parameter(description = "id do produto para update") @PathVariable("id") Long id,
 			@RequestBody Produto produto) {
-		return new ResponseEntity<>(service.update(produto, id), HttpStatus.OK);
+		return new ResponseEntity<>(service.toDto(service.update(produto, id)), HttpStatus.OK);
 	}
 
 	@Operation(summary = "Criar o Produto")
@@ -87,11 +88,11 @@ public class ProdutoController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class)) }),
 			@ApiResponse(responseCode = "404", description = "Bad request", content = @Content) })
 	@PostMapping
-	public ResponseEntity<Produto> addProduto(
+	public ResponseEntity<ProdutoDto> addProduto(
 			@Parameter(description = "Produto que sera criado") @RequestBody @Valid Produto produto) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(linkTo(ProdutoController.class).slash(produto.getId()).toUri());
-		return new ResponseEntity<>(service.insert(produto), httpHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<>(service.toDto(service.insert(produto)), httpHeaders, HttpStatus.CREATED);
 	}
 
 }

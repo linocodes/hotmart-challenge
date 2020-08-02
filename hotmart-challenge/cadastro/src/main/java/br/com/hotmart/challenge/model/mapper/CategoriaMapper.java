@@ -4,12 +4,9 @@ import org.mapstruct.Mapper;
 
 import br.com.hotmart.challenge.model.dto.CategoriaDto;
 import br.com.hotmart.challenge.model.entity.Categoria;
+import br.com.hotmart.challenge.model.mapper.generic.BaseMapper;
 
 @Mapper(componentModel = "spring")
-public interface CategoriaMapper {
-
-	Categoria toModel(CategoriaDto dto);
-
-	CategoriaDto toDto(Categoria model);
+public interface CategoriaMapper extends BaseMapper<CategoriaDto, Categoria> {
 
 }

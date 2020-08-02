@@ -1,5 +1,14 @@
 version: '3'
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
   postgres-db:
     container_name: postgres-db
     image: postgres:latest
@@ -10,3 +19,14 @@ services:
       POSTGRES_USER: hotmart
       POSTGRES_PASSWORD: desafio
       POSTGRES_DB: challenge
+  cadastro:
+    container_name: hotmart-challenge_cadastro
+    build: cadastro
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_USERNAME: hotmart
+      SPRING_DATASOURCE_PASSWORD: desafio
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/challenge
+    depends_on:
+      - postgres-db      

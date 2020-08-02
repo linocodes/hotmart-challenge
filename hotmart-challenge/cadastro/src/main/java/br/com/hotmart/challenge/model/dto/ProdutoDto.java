@@ -1,7 +1,7 @@
 package br.com.hotmart.challenge.model.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +9,6 @@ import lombok.Data;
 
 @Data
 public class ProdutoDto implements Serializable {
-
 
 	private static final long serialVersionUID = -4786069695634646242L;
 
@@ -23,5 +22,6 @@ public class ProdutoDto implements Serializable {
 	@NotNull
 	private CategoriaDto categoria;
 
-	private Date dataCriacao;
+	private LocalDateTime dataCriacao;
+
 }
