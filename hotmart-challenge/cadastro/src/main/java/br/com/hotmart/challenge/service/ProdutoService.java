@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.hotmart.challenge.generic.AbstractService;
+import br.com.hotmart.challenge.generic.BaseMapper;
+import br.com.hotmart.challenge.generic.BaseRepository;
 import br.com.hotmart.challenge.model.dto.ProdutoDto;
 import br.com.hotmart.challenge.model.entity.Produto;
 import br.com.hotmart.challenge.model.mapper.ProdutoMapper;
-import br.com.hotmart.challenge.model.mapper.generic.BaseMapper;
 import br.com.hotmart.challenge.repository.ProdutoRepository;
-import br.com.hotmart.challenge.repository.generic.BaseRepository;
-import br.com.hotmart.challenge.service.generic.AbstractService;
 import br.com.hotmart.challenge.validator.EntityOptionalValidator;
 
 @Service
@@ -54,7 +54,15 @@ public class ProdutoService extends AbstractService<Produto, Long> implements Ba
 	@Override
 	public List<Produto> toEntity(List<ProdutoDto> dtoList) {
 		return mapper.toEntity(dtoList);
+	}
 
+	@Override
+	public Produto carregaEntidade(Produto entity, Long id) {
+		/**
+		 * TODO Verificar com calma
+		 */
+		Produto produto = find(id);
+		return produto;
 	}
 
 }

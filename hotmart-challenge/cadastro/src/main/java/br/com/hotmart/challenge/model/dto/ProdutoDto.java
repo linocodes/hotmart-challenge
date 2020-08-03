@@ -3,7 +3,7 @@ package br.com.hotmart.challenge.model.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -14,14 +14,13 @@ public class ProdutoDto implements Serializable {
 
 	private Long id;
 
-	@NotNull
 	private String nome;
 
 	private String descricao;
 
-	@NotNull
 	private CategoriaDto categoria;
 
+	@JsonFormat(pattern = "dd/MM/YYYY")
 	private LocalDateTime dataCriacao;
 
 }

@@ -11,8 +11,7 @@ import br.com.hotmart.challenge.model.mapper.ProdutoMapper;
 
 public class ProdutoMapperUnitTest {
 
-    private ProdutoMapper mapper = Mappers.getMapper(ProdutoMapper.class);
-
+	private ProdutoMapper mapper = Mappers.getMapper(ProdutoMapper.class);
 
 	@Test
 	public void compareDtoWithEntity() {
@@ -35,4 +34,5 @@ public class ProdutoMapperUnitTest {
 		assertThat(entity.getId()).isEqualTo(dto.getId());
 		assertThat(entity.getNome()).isEqualTo(dto.getNome());
 	}
+
 }

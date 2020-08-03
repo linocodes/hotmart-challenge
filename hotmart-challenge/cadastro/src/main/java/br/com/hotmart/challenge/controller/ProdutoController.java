@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.hotmart.challenge.model.dto.ProdutoDto;
-import br.com.hotmart.challenge.model.entity.Produto;
 import br.com.hotmart.challenge.service.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -41,7 +40,7 @@ public class ProdutoController {
 
 	@Operation(summary = "Listar todos dos produtos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Produtos encontrados", content = {
-			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Produto.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProdutoDto.class))) }),
 			@ApiResponse(responseCode = "404", description = "Não existe produtos no momento", content = @Content) })
 	@GetMapping
 	public ResponseEntity<List<ProdutoDto>> getAllProdutos() {
@@ -51,7 +50,7 @@ public class ProdutoController {
 	@Operation(summary = "Pesquisar o Produto por id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Produto encontrado", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoDto.class)) }),
 			@ApiResponse(responseCode = "400", description = "Id inválido", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Produto não encontrado", content = @Content) })
 	@GetMapping(value = "{id}")
@@ -73,26 +72,27 @@ public class ProdutoController {
 	@Operation(summary = "Atualizar o Produto")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoDto.class)) }),
 			@ApiResponse(responseCode = "404", description = "Nenhum Produto existe com o id fornecido", content = @Content) })
 	@PutMapping("/{id}")
 	public ResponseEntity<ProdutoDto> updateProduto(
 			@Parameter(description = "id do produto para update") @PathVariable("id") Long id,
-			@RequestBody Produto produto) {
-		return new ResponseEntity<>(service.toDto(service.update(produto, id)), HttpStatus.OK);
+			@RequestBody ProdutoDto produto) {
+		return new ResponseEntity<>(service.toDto(service.carregaEntidade(service.toEntity(produto), id)),
+				HttpStatus.OK);
 	}
 
 	@Operation(summary = "Criar o Produto")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Produto criado", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoDto.class)) }),
 			@ApiResponse(responseCode = "404", description = "Bad request", content = @Content) })
 	@PostMapping
 	public ResponseEntity<ProdutoDto> addProduto(
-			@Parameter(description = "Produto que sera criado") @RequestBody @Valid Produto produto) {
+			@Parameter(description = "Produto que sera criado") @RequestBody @Valid ProdutoDto produto) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(linkTo(ProdutoController.class).slash(produto.getId()).toUri());
-		return new ResponseEntity<>(service.toDto(service.insert(produto)), httpHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<>(service.toDto(service.insert(service.toEntity(produto))), httpHeaders, HttpStatus.CREATED);
 	}
 
 }
