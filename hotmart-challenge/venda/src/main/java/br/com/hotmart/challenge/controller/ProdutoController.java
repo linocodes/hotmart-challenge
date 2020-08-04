@@ -33,7 +33,7 @@ public class ProdutoController {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Pedido processado com sucesso.", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = VendaRequest.class)) }),
-			@ApiResponse(responseCode = "404", description = "Bad request", content = @Content) })
+			@ApiResponse(responseCode = "404", description = "Parametro inválidos para a compra.", content = @Content) })
 	@PostMapping
 	public ResponseEntity<RetornoResponse> realizaVenda(
 			@Parameter(description = "Dados para realizar a compra") @RequestBody @Valid VendaRequest request) {

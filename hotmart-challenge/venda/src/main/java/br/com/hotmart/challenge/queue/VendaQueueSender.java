@@ -14,7 +14,7 @@ public class VendaQueueSender {
 	@Autowired
 	private Queue queue;
 
-	public void send(VendaQueue venda) {
+	public void send(ComunicacaoQueue venda) {
 		rabbitTemplate.convertAndSend(this.queue.getName(), venda);
 	}
 

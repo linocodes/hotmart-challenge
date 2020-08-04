@@ -10,15 +10,17 @@ import br.com.hotmart.challenge.generic.BaseRepository;
 import br.com.hotmart.challenge.model.entity.Venda;
 import br.com.hotmart.challenge.model.request.VendaRequest;
 import br.com.hotmart.challenge.model.response.RetornoResponse;
-import br.com.hotmart.challenge.queue.VendaQueue;
+import br.com.hotmart.challenge.queue.ComunicacaoQueue;
 import br.com.hotmart.challenge.queue.VendaQueueSender;
 import br.com.hotmart.challenge.utils.Utils;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class VendaService extends AbstractService<Venda, Long> {
 
 	@Autowired
-	private VendaQueueSender sender;
+	private VendaQueueSender vendaQueueSender;
 
 	@Autowired
 	private VendedorService vendedorService;
@@ -45,20 +47,29 @@ public class VendaService extends AbstractService<Venda, Long> {
 		venda.setQuantidade(request.getQuantidade());
 		insert(venda);
 
-		VendaQueue vendaQueue = new VendaQueue();
-		vendaQueue.setIdProduto(venda.getProduto().getId());
-		vendaQueue.setNome(venda.getProduto().getNome());
-		vendaQueue.setDescricao(venda.getProduto().getDescricao());
-		vendaQueue.setCategoria(venda.getProduto().getCategoria().getNome());
-		vendaQueue.setDataCriacao(venda.getProduto().getDataCriacao());
-		vendaQueue.setQuantidade(venda.getQuantidade());
-		vendaQueue.setDataVenda(venda.getDataCriacao());
-		sender.send(vendaQueue);
+		enviaVenda(venda);
 
 		RetornoResponse response = new RetornoResponse();
 		response.setPedido(venda.getPedido());
 		return response;
 
+	}
+
+	private void enviaVenda(Venda venda) {
+		ComunicacaoQueue vendaQueue = new ComunicacaoQueue();
+		try {
+			vendaQueue.setIdProduto(venda.getProduto().getId());
+			vendaQueue.setNome(venda.getProduto().getNome());
+			vendaQueue.setDescricao(venda.getProduto().getDescricao());
+			vendaQueue.setCategoria(venda.getProduto().getCategoria().getNome());
+			vendaQueue.setDataCriacao(Utils.converterLocalDateTimeToDate(venda.getProduto().getDataCriacao()));
+			vendaQueue.setDataVenda(Utils.converterLocalDateTimeToDate(venda.getDataCriacao()));
+			vendaQueue.setQuantidade(venda.getQuantidade());
+			vendaQueueSender.send(vendaQueue);
+		} catch (Exception e) {
+			log.info("Ocorreu um erro enviando a venda para a fila. Dado (%s)",
+					Utils.converterObjectTosTring(vendaQueue));
+		}
 	}
 
 	private void validaRequisicao(VendaRequest request) {
@@ -82,7 +93,6 @@ public class VendaService extends AbstractService<Venda, Long> {
 
 	@Override
 	public Venda carregaEntidade(Venda entity, Long id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
