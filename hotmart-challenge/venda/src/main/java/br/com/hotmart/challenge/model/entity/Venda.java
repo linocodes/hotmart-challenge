@@ -13,9 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.NumberFormat;
-
-import br.com.hotmart.challenge.model.entity.generic.BaseEntity;
+import br.com.hotmart.challenge.generic.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -48,5 +46,7 @@ public class Venda extends BaseEntity implements Serializable {
 	private String pedido;
 
 	private Integer quantidade;
+
+	private Integer avaliacao;
 
 }

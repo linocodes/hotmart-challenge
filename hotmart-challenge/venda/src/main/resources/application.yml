@@ -1,7 +1,7 @@
 server:
   port: 8082
   servlet:
-    context-path: /crud
+    context-path: /venda
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -16,7 +16,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     database: postgresql
   rabbitmq:
     host: localhost
@@ -26,18 +26,4 @@ spring:
 
 hotmart:
   challlenge:
-    filaVenda: FilaVenda
-   
-springdoc:
-  swagger-ui:
-    path: /swagger-ui-custom.html
-    operationsSorter: method
-  api-docs:
-    path: /api-docs
-  version: @springdoc.version@
-  
-
- 
-
-  
-  
+    filaVenda: filaVenda

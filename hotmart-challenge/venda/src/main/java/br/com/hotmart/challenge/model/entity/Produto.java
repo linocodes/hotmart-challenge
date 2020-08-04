@@ -1,10 +1,16 @@
 package br.com.hotmart.challenge.model.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +20,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Produto {
+public class Produto implements Serializable {
 
 	private static final long serialVersionUID = -6271560923378223432L;
 
@@ -28,5 +34,16 @@ public class Produto {
 	@Length(min = 1, max = 100)
 	@Column(nullable = false)
 	private String nome;
+
+	@Length(min = 0, max = 2000)
+	@Column(nullable = false)
+	private String descricao;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_categoria")
+	private Categoria categoria;
+
+	private LocalDateTime dataCriacao;
+
 
 }

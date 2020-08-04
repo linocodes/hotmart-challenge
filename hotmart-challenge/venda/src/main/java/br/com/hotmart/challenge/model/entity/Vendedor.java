@@ -19,8 +19,8 @@ public class Vendedor implements Serializable {
 
 	@Id
 	@Column(name = "id_vendedor", nullable = false)
-	@SequenceGenerator(name = "seq_venda", sequenceName = "seq_venda", allocationSize = 1)
-	@GeneratedValue(generator = "seq_venda", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "id_vendedor", sequenceName = "id_vendedor", allocationSize = 1)
+	@GeneratedValue(generator = "id_vendedor", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column(nullable = false)
