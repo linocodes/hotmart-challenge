@@ -1,0 +1,23 @@
+server:
+  port: 8084
+spring:
+  datasource:
+    url: jdbc:h2:mem:challenge
+    driverClassName: org.h2.Driver
+    username: hotmart
+    password: desafio
+    database-platform: org.hibernate.dialect.H2Dialect
+  jpa:
+    open-in-view: true
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: h2
+spring.h2.console.enabled: true
+
+
+rabbitmq:
+  fila:
+    avaliacaoProduto: avaliacaoProduto
+    filaVenda: filaVenda  
