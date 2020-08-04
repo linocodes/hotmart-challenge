@@ -25,11 +25,11 @@ public class VendaService extends AbstractService<Venda, Long> {
 	public RetornoResponse avalidarProduto(AvaliaProdutoRequest request) {
 
 		if (request.getPedido() == null) {
-			throw new BaseException(HttpStatus.BAD_REQUEST, "Informe o numero do pedido");
+			throw new BaseException(HttpStatus.BAD_REQUEST, "Informe o número do pedido");
 		}
 
 		if (request.getNota() == null) {
-			throw new BaseException(HttpStatus.BAD_REQUEST, "Informe o numero do pedido");
+			throw new BaseException(HttpStatus.BAD_REQUEST, "Informe o nota para o produto");
 		}
 
 		if (request.getNota() < 1 || request.getNota() > 5) {

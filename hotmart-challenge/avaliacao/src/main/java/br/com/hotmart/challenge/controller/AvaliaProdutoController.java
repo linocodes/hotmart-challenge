@@ -31,7 +31,7 @@ public class AvaliaProdutoController {
 
 	@Operation(summary = "Avaliar o produto adquirido")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Produto avaliadao com sucesso", content = {
+			@ApiResponse(responseCode = "200", description = "Produto avaliado com sucesso", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = AvaliaProdutoRequest.class)) }),
 			@ApiResponse(responseCode = "404", description = "Bad request", content = @Content) })
 	@PostMapping

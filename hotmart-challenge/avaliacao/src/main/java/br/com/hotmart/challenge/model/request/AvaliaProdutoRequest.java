@@ -3,7 +3,6 @@ package br.com.hotmart.challenge.model.request;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.Data;
 
