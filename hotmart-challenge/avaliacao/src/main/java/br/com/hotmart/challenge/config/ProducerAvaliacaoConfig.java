@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class FilaVendaConfig {
+public class ProducerAvaliacaoConfig {
 
 	@Value("${rabbitmq.fila.avaliacaoProduto}")
 	private String avaliacaoProdutoQueue;

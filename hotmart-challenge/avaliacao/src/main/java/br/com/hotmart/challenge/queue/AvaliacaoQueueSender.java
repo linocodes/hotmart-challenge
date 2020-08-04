@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VendaQueueSender {
+public class AvaliacaoQueueSender {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -14,7 +14,7 @@ public class VendaQueueSender {
 	@Autowired
 	private Queue queue;
 
-	public void send(VendaQueue venda) {
+	public void send(ComunicacaoQueue venda) {
 		rabbitTemplate.convertAndSend(this.queue.getName(), venda);
 	}
 
