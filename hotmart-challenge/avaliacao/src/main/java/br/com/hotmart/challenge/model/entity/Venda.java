@@ -1,6 +1,7 @@
 package br.com.hotmart.challenge.model.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,10 +43,12 @@ public class Venda extends BaseEntity implements Serializable {
 	@JoinColumn(name = "id_produto")
 	private Produto produto;
 
-	@NotNull
 	private String pedido;
 
+	@NotNull
 	private Integer quantidade;
+
+	private LocalDateTime dataAvaliacao;
 
 	private Integer avaliacao;
 
