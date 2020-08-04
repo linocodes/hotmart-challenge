@@ -9,6 +9,7 @@ import br.com.hotmart.challenge.generic.AbstractService;
 import br.com.hotmart.challenge.generic.BaseRepository;
 import br.com.hotmart.challenge.model.entity.Venda;
 import br.com.hotmart.challenge.model.request.VendaRequest;
+import br.com.hotmart.challenge.model.response.RetornoResponse;
 import br.com.hotmart.challenge.queue.VendaQueue;
 import br.com.hotmart.challenge.queue.VendaQueueSender;
 import br.com.hotmart.challenge.utils.Utils;
@@ -32,7 +33,7 @@ public class VendaService extends AbstractService<Venda, Long> {
 		super(repository);
 	}
 
-	public String vendaProduto(VendaRequest request) {
+	public RetornoResponse vendaProduto(VendaRequest request) {
 
 		validaRequisicao(request);
 
@@ -51,9 +52,12 @@ public class VendaService extends AbstractService<Venda, Long> {
 		vendaQueue.setCategoria(venda.getProduto().getCategoria().getNome());
 		vendaQueue.setDataCriacao(venda.getProduto().getDataCriacao());
 		vendaQueue.setQuantidade(venda.getQuantidade());
+		vendaQueue.setDataVenda(venda.getDataCriacao());
 		sender.send(vendaQueue);
 
-		return venda.getPedido();
+		RetornoResponse response = new RetornoResponse();
+		response.setPedido(venda.getPedido());
+		return response;
 
 	}
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.hotmart.challenge.model.request.VendaRequest;
+import br.com.hotmart.challenge.model.response.RetornoResponse;
 import br.com.hotmart.challenge.service.VendaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,11 +31,11 @@ public class ProdutoController {
 
 	@Operation(summary = "Realiza a venda de um Produto")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201", description = "Produto criado", content = {
+			@ApiResponse(responseCode = "200", description = "Pedido recebido com sucesso.", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = VendaRequest.class)) }),
 			@ApiResponse(responseCode = "404", description = "Bad request", content = @Content) })
 	@PostMapping
-	public ResponseEntity<String> realizaVenda(
+	public ResponseEntity<RetornoResponse> realizaVenda(
 			@Parameter(description = "Dados para realizar a venda") @RequestBody @Valid VendaRequest request) {
 		return new ResponseEntity<>(service.vendaProduto(request), HttpStatus.OK);
 	}
