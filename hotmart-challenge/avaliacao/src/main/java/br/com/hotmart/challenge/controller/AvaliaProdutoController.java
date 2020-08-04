@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.hotmart.challenge.model.request.VendaRequest;
+import br.com.hotmart.challenge.model.request.AvaliaProdutoRequest;
 import br.com.hotmart.challenge.model.response.RetornoResponse;
 import br.com.hotmart.challenge.service.VendaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,22 +22,23 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("api/produto/v1")
-@Tag(name = "produto", description = "O Produto API com as anotações de documenentação")
-public class ProdutoController {
+@RequestMapping("api/nota-produto/v1")
+@Tag(name = "avaliacao", description = "Avaliação do produto adquirido.")
+public class AvaliaProdutoController {
 
 	@Autowired
 	private VendaService service;
 
-	@Operation(summary = "Realiza a compra de um Produto")
+	@Operation(summary = "Avaliar o produto adquirido")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Pedido processado com sucesso.", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = VendaRequest.class)) }),
+			@ApiResponse(responseCode = "200", description = "Produto avaliadao com sucesso", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = AvaliaProdutoRequest.class)) }),
 			@ApiResponse(responseCode = "404", description = "Bad request", content = @Content) })
 	@PostMapping
 	public ResponseEntity<RetornoResponse> realizaVenda(
-			@Parameter(description = "Dados para realizar a compra") @RequestBody @Valid VendaRequest request) {
-		return new ResponseEntity<>(service.vendaProduto(request), HttpStatus.OK);
+			@Parameter(description = "Número do pedido que será avaliado")
+			@RequestBody @Valid AvaliaProdutoRequest request) {
+		return new ResponseEntity<>(service.avalidarProduto(request), HttpStatus.CREATED);
 	}
 
 }
