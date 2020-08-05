@@ -28,7 +28,7 @@ public abstract class AbstractService<T, PK extends Serializable> implements Bas
 
 	@Override
 	public List<T> list() {
-		List<T> list = repository.findAll();
+		List<T> list = (List<T>) repository.findAll();
 		validarEntidade.validadatorOptional(list);
 		return list;
 	}
@@ -65,7 +65,7 @@ public abstract class AbstractService<T, PK extends Serializable> implements Bas
 	@Override
 	public T update(T entity, PK id) {
 		try {
-			repository.saveAndFlush(entity);
+			repository.save(entity);
 			return entity;
 		} catch (Exception e) {
 			throw new BaseException(HttpStatus.BAD_REQUEST,
@@ -78,7 +78,7 @@ public abstract class AbstractService<T, PK extends Serializable> implements Bas
 	public T insert(T entity) {
 
 		try {
-			repository.saveAndFlush(entity);
+			repository.save(entity);
 			return entity;
 		} catch (Exception e) {
 			throw new BaseException(HttpStatus.BAD_REQUEST, "Ocorreu um problema durante a inclusão do registro");

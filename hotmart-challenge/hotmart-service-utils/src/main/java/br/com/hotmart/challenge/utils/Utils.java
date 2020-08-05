@@ -44,4 +44,8 @@ public class Utils {
 		}
 		return null;
 	}
+
+	public static int calculateDayDifference(Date dateAfter, Date dateBefore){
+	    return (int)(dateAfter.getTime()-dateBefore.getTime())/(1000 * 60 * 60 * 24);
+	}
 }
