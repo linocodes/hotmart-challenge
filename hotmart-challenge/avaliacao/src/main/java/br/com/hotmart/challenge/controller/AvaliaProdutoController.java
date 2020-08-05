@@ -36,7 +36,7 @@ public class AvaliaProdutoController {
 	@PostMapping
 	public ResponseEntity<RetornoResponse> realizaVenda(
 			@Parameter(description = "Número do pedido que será avaliado") @RequestBody @Valid AvaliaProdutoRequest request) {
-		return new ResponseEntity<>(service.avalidarProduto(request), HttpStatus.CREATED);
+		return new ResponseEntity<>(service.avalidarProduto(request), HttpStatus.OK);
 	}
 
 }
