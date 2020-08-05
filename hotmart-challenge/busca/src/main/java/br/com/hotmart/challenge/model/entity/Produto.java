@@ -37,6 +37,6 @@ public class Produto implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataCriacao;
 
-    private Long score;
+    private double score;
 
 }

@@ -11,10 +11,10 @@
 	</parent>
 
 	<artifactId>busca</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Busca</name>
-	<description>Serviço de busca de produtos</description>
+	<description>Serviço de busca de produtos por score</description>
 
 	<dependencies>
 

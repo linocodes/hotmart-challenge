@@ -1,11 +1,12 @@
 package br.com.hotmart.challenge.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,17 +28,14 @@ import br.com.hotmart.challenge.model.response.ProdutoResponse;
 import br.com.hotmart.challenge.repository.AvaliacaoProdutoRepository;
 import br.com.hotmart.challenge.repository.CategoriaRepository;
 import br.com.hotmart.challenge.repository.OcorrenciaVendaRepository;
-import br.com.hotmart.challenge.repository.ProdutoRepository;
 import br.com.hotmart.challenge.specification.ProdutoSpecification;
+import br.com.hotmart.challenge.utils.Utils;
 
 @Service
 public class BuscaProdutoServiceService {
 
 	@Autowired
 	private ProdutoService produtoService;
-
-	@Autowired
-	private ProdutoRepository produtoRepository;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -49,6 +47,8 @@ public class BuscaProdutoServiceService {
 	private OcorrenciaVendaRepository ocorrenciaVendaRepository;
 
 	public ProdutoResponse<Produto> buscaProduto(ProdutoDto request, Pageable pagination) {
+
+		calculoScore();
 
 		ProdutoResponse<Produto> produto = new ProdutoResponse<>();
 		TermoPesquisado termo = new TermoPesquisado();
@@ -85,20 +85,40 @@ public class BuscaProdutoServiceService {
 	 */
 	private void calculoScore() {
 
-		Integer score = 0;
+		double score = 0;
 		List<Produto> lista = produtoService.list();
 
 		List<Notas> listaNotas = mediaProduto();
 		List<QuantidadeVendida> listQuantidade = quantidadeVendas();
 		List<Categoria> listaCategoria = noticias();
-/*
-		Map<String, Integer> map = listaNotas.stream().collect(toMap(i -> i.,
-			                                   i -> i,
-			                                   Integer::sum));
-		 Map<Long, Integer> map = listaNotas.stream().collect(Collectors.toMap(Item::getKey, item -> item));
 
+		Map<Long, Long> mapNotas = listaNotas.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getNotas()));
+		Map<Long, Long> mapVenda = listQuantidade.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getQuantidade()));
+		Map<String, Integer> mapCat   = listaCategoria.stream().collect(Collectors.toMap(a -> a.getCategoria(), a -> a.getQuantidade()));
+
+		Date today = new Date();
 		for (Produto produto : lista) {
-		*/
+
+			Long notaGeral = mapNotas.get(produto.getIdProduto());
+			if (notaGeral == null) {
+				notaGeral = 0L;
+			}
+			double valorX = notaGeral / 12;
+
+			Long vendaGeral = mapVenda.get(produto.getIdProduto());
+			if (vendaGeral == null) {
+				vendaGeral = 0L;
+			}
+			int dias = Utils.calculateDayDifference(today,produto.getDataCriacao());
+
+			double valorY = vendaGeral / dias;
+
+			Integer valorZ = mapCat.get(produto.getCategoria());
+
+			score = valorX + valorY + valorZ;
+
+			produto.setScore(score);
+			produtoService.update(produto, produto.getIdProduto());
 
 		}
 
