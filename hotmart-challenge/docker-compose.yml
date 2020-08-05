@@ -87,7 +87,7 @@ services:
       - mysqlsrv 
       - rabbitmq 
   noticia:
-    container_name: hotmart-challenge_processa
+    container_name: hotmart-challenge_noticia
     build: noticia
     ports:
       - "8085:8085"
@@ -98,7 +98,7 @@ services:
     depends_on:
       - mysqlsrv 
   busca:
-    container_name: hotmart-challenge_processa
+    container_name: hotmart-challenge_busca
     build: busca
     ports:
       - "8086:8086"

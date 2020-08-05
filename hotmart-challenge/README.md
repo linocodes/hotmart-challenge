@@ -38,18 +38,17 @@ No momento de entregar percebi que ele não lista todos os produtos.  Pelo motiv
 	- Hystrix
 	- Maven
 
-Como rodar o projeto.
+##Como rodar o projeto.
 
-Primeiro realize o
 
 **mvn clean install na pasta do projeto hotmart-challenge**
 
-Com isso ele irá baixar as dependencias.
+- Faça a build do projetos: mvn package -DskipTests
+
 
 em seguinda utilize o comando
 
 **docker-compose -f docker-compose.yml -f docker-compose.dev.yml up**
-
 
 
 ### Porta dos service
