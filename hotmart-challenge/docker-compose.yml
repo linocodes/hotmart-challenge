@@ -10,7 +10,7 @@ services:
       - "5672:5672"
       - "15672:15672"
   postgres-db:
-    container_name: postgres-db
+    container_name: hotmart-challenge_postgres-db
     image: postgres:latest
     restart: always
     ports:
@@ -21,11 +21,12 @@ services:
       POSTGRES_DB: challenge
     networks:
       - compose-network 
-  mysqlsrv:
-    image: mysql:5.7
+  mysql-db:
+    container_name: hotmart-challenge_mysql-db  
+    image: mysql:latest
     restart: always
     ports:
-      - "3306:3306"    
+      - "3306:33060"    
     environment:
       - MYSQL_ROOT_PASSWORD=desafio
       - MYSQL_DATABASE=challenge
@@ -38,7 +39,7 @@ services:
       - 9080:8080
     depends_on:
       - postgres-db
-      - mysqlsrv
+      - mysql-db
     networks:
       - compose-network      
   cadastro:
@@ -53,6 +54,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/challenge
     depends_on:
       - postgres-db 
+    networks:
+      - compose-network      
   venda:
     container_name: hotmart-challenge_venda
     build: venda
@@ -66,6 +69,8 @@ services:
     depends_on:
       - postgres-db 
       - rabbitmq  
+    networks:
+      - compose-network      
   avaliacao:
     container_name: hotmart-challenge_avaliacao
     build: avaliacao
@@ -78,7 +83,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/challenge
     depends_on:
       - postgres-db 
-      - rabbitmq   
+      - rabbitmq  
+    networks:
+      - compose-network
   processa:
     container_name: hotmart-challenge_processa
     build: processa
@@ -88,10 +95,12 @@ services:
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:3306/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/challenge
     depends_on:
-      - mysqlsrv 
+      - mysql-db 
       - rabbitmq 
+    networks:
+      - compose-network      
   noticia:
     container_name: hotmart-challenge_noticia
     build: noticia
@@ -101,9 +110,11 @@ services:
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:3306/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/challenge
     depends_on:
-      - mysqlsrv 
+      - mysql-db 
+    networks:
+      - compose-network      
   busca:
     container_name: hotmart-challenge_busca
     build: busca
@@ -113,9 +124,11 @@ services:
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:postgresql://mysqlsrv:3306/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/challenge
     depends_on:
-      - mysqlsrv 
+      - mysql-db 
+    networks:
+      - compose-network      
 networks: 
   compose-network:
     driver: bridge 

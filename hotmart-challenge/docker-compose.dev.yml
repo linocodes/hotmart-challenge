@@ -7,9 +7,9 @@ services:
   postgres-db:
     ports:
       - 5432:5432
-  mysqlsrv:
+  mysql-db:
     ports:
-      - "3306:3306"    
+      - "3306:33060"    
   adminer:
     ports:
       - 9080:8080      
