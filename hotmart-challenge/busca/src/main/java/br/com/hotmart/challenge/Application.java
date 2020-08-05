@@ -1,13 +1,13 @@
-package br.com.hotmart.challenge.demo;
+package br.com.hotmart.challenge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BuscaApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BuscaApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
