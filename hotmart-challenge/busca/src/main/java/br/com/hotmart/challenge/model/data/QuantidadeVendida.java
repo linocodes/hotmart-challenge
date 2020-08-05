@@ -6,6 +6,6 @@ import lombok.Data;
 public class QuantidadeVendida {
 
 	private Long id;
-	private Long quantidade;
+	private Integer quantidade;
 
 }

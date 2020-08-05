@@ -93,7 +93,7 @@ public class BuscaProdutoServiceService {
 		List<Categoria> listaCategoria = noticias();
 
 		Map<Long, Long> mapNotas = listaNotas.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getNotas()));
-		Map<Long, Long> mapVenda = listQuantidade.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getQuantidade()));
+		Map<Long, Integer> mapVenda = listQuantidade.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getQuantidade()));
 		Map<String, Integer> mapCat   = listaCategoria.stream().collect(Collectors.toMap(a -> a.getCategoria(), a -> a.getQuantidade()));
 
 		Date today = new Date();
@@ -105,18 +105,16 @@ public class BuscaProdutoServiceService {
 			}
 			double valorX = notaGeral / 12;
 
-			Long vendaGeral = mapVenda.get(produto.getIdProduto());
+			Integer vendaGeral = mapVenda.get(produto.getIdProduto());
 			if (vendaGeral == null) {
-				vendaGeral = 0L;
+				vendaGeral = 0;
 			}
 			int dias = Utils.calculateDayDifference(today,produto.getDataCriacao());
-
 			double valorY = vendaGeral / dias;
 
 			Integer valorZ = mapCat.get(produto.getCategoria());
 
 			score = valorX + valorY + valorZ;
-
 			produto.setScore(score);
 			produtoService.update(produto, produto.getIdProduto());
 
