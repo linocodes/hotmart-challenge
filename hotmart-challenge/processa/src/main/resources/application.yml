@@ -1,5 +1,7 @@
 server:
   port: 8084
+  servlet:
+    context-path: /processa
 spring:
   datasource:
     url: jdbc:h2:mem:challenge
@@ -12,7 +14,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     database: h2
 spring.h2.console.enabled: true
 
