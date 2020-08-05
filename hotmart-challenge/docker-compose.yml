@@ -23,6 +23,7 @@ services:
       - compose-network 
   mysqlsrv:
     image: mysql:5.7
+    restart: always
     ports:
       - "3306:3306"    
     environment:
@@ -32,6 +33,7 @@ services:
       - compose-network
   adminer:
     image: adminer
+    restart: always
     ports:
       - 9080:8080
     depends_on:
@@ -42,6 +44,7 @@ services:
   cadastro:
     container_name: hotmart-challenge_cadastro
     build: cadastro
+    restart: always
     ports:
       - "8081:8081"
     environment:
@@ -53,6 +56,7 @@ services:
   venda:
     container_name: hotmart-challenge_venda
     build: venda
+    restart: always    
     ports:
       - "8082:8082"
     environment:
@@ -65,6 +69,7 @@ services:
   avaliacao:
     container_name: hotmart-challenge_avaliacao
     build: avaliacao
+    restart: always    
     ports:
       - "8083:8083"
     environment:
@@ -77,35 +82,38 @@ services:
   processa:
     container_name: hotmart-challenge_processa
     build: processa
+    restart: always    
     ports:
       - "8084:8084"
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:5432/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:3306/challenge
     depends_on:
       - mysqlsrv 
       - rabbitmq 
   noticia:
     container_name: hotmart-challenge_noticia
     build: noticia
+    restart: always    
     ports:
       - "8085:8085"
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:5432/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:3306/challenge
     depends_on:
       - mysqlsrv 
   busca:
     container_name: hotmart-challenge_busca
     build: busca
+    restart: always    
     ports:
       - "8086:8086"
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:postgresql://mysqlsrv:5432/challenge
+      SPRING_DATASOURCE_URL: jdbc:postgresql://mysqlsrv:3306/challenge
     depends_on:
       - mysqlsrv 
 networks: 
