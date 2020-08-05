@@ -14,7 +14,7 @@ spring:
   jpa:
     open-in-view: true
     show-sql: true
-    generate-ddl: true
+    generate-ddl: false
     hibernate:
       ddl-auto: none
     database: postgresql

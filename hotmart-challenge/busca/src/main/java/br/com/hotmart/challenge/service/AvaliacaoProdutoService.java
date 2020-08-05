@@ -31,7 +31,7 @@ public class AvaliacaoProdutoService extends AbstractService<AvaliacaoProduto, L
 			dadosRecebidos = objectMapper.readValue(json, ComunicacaoQueue.class);
 			avaliacaoProduto(dadosRecebidos);
 		} catch (Exception e) {
-			log.info("Ocorreu um erro durante o parse do json. Valor rebebido da fila avaliação. (%s)",json);
+			log.info(String.format("Ocorreu um erro durante o parse do json. Valor rebebido da fila avaliação. (%s)",json));
 		}
 	}
 

@@ -13,30 +13,29 @@ Com base nas informações o servço irá grava o dados pertinentes da venda na 
 	@Value("${hotmart.challlenge.filaVenda}")
 	private String vendaQueue;
 
-Onde esses dados são recebidos e armazenados em um banco de dados MONGODB. A funcionalidade de busca de produtos e raqueamento do produto conforme as regras estabelecidas no momento da construção do service ficará sob a responsabilidade dos serviços que realizam consultas no MongoDB.
+Onde esses dados são recebidos e armazenados em um banco de dados MYSQL. A funcionalidade de busca de produtos e raqueamento do produto conforme as regras estabelecidas no momento da construção do service ficará sob a responsabilidade dos serviços que realizam consultas no MYSQL.
 
-Dentro do docker-compose foi adicionado duas ferramentas de consulta de dados. Uma para o banco de dados Postgress e outro cliente para o MongoDB.
+Dentro do docker-compose foi adicionado uma ferramenta de consulta de dados. Ela funciona tanto para o banco MYSQL quanto para o Postgres.
 
 Abaixo estão os endereções para acessar os serviços.
 
 - PostGres
 
-	- http://localhost:16543/browser/
+	- http://localhost:9080/
 
-		- Usuario Login: hotmart
+		- servidor: postgres-db
+		- Usuario: hotmart
     	- Senha: desafio
+    	- banco de dados: challenge
 
-   - Dados do Banco
+- MySql
 
-   		- Hostname: postgres-db
-   		- Usuario: hotmart
-   		- senha: desafio
+	- http://localhost:9080/
 
-- PostGres
-
-	- http://localhost:3030/databaseStats
-
-		- Ao conectar escolha o banco mongo-db
+		- servidor: mysqlsrv
+		- Usuario: root
+    	- Senha: desafio
+    	- banco de dados: challenge
 
 
 Um outro docker que também esta disponivel é o rabbitmq que esta na url abaixo:

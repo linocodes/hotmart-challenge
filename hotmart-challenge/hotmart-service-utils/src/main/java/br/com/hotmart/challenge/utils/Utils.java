@@ -1,6 +1,5 @@
 package br.com.hotmart.challenge.utils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
@@ -40,12 +39,12 @@ public class Utils {
 		try {
 			return mapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {
-			log.info("Erro ao converter objeto para string %s", e.getMessage());
+			log.info(String.format("Erro ao converter objeto para string %s", e.getMessage()));
 		}
 		return null;
 	}
 
-	public static int calculateDayDifference(Date dateAfter, Date dateBefore){
-	    return (int)(dateAfter.getTime()-dateBefore.getTime())/(1000 * 60 * 60 * 24);
+	public static int calculateDayDifference(Date dateAfter, Date dateBefore) {
+		return (int) (dateAfter.getTime() - dateBefore.getTime()) / (1000 * 60 * 60 * 24);
 	}
 }

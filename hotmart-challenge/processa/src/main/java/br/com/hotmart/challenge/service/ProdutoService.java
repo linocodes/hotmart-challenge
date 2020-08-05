@@ -36,7 +36,7 @@ public class ProdutoService extends AbstractService<Produto, Long> {
 			inclusaoProduto(dadosRecebidos);
 			ocorrenciaVenda(dadosRecebidos);
 		} catch (Exception e) {
-			log.info("Ocorreu um erro durante o parse do json. Valor rebebido da fila venda. (%s)",json);
+			log.info(String.format("Ocorreu um erro durante o parse do json. Valor rebebido da fila venda. (%s)", json));
 		}
 	}
 

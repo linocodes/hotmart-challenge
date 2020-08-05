@@ -1,13 +1,10 @@
 package br.com.hotmart.challenge.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import br.com.hotmart.challenge.exception.BaseException;
 import br.com.hotmart.challenge.generic.AbstractService;

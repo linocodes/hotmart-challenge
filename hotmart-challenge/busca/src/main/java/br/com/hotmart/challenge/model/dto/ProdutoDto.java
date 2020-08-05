@@ -1,7 +1,6 @@
 package br.com.hotmart.challenge.model.dto;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import lombok.Data;
 

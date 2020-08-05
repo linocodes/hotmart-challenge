@@ -4,38 +4,29 @@ O service de busca recupera os dados do banco e exibe para o usuario. Informa ta
 
 Ele também faz o processamento do score do produto.
 
-Para consultar as informações no base de dados:
+Dentro do docker-compose foi adicionado uma ferramenta de consulta de dados. Ela funciona tanto para o banco MYSQL quanto para o Postgres.
 
-spring:
-  datasource:
-    url: jdbc:h2:mem:challenge
-    driverClassName: org.h2.Driver
-    username: hotmart
-    password: desafio
-    database-platform: org.hibernate.dialect.H2Dialect
-  jpa:
-    open-in-view: true
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-    database: h2
-spring.h2.console.enabled: true
+Abaixo estão os endereções para acessar os serviços.
 
+- PostGres
 
+	- http://localhost:9080/
 
-- H2
-
-	- http://localhost:8086/score/h2-console
-
-		- Usuario Login: hotmart
+		- servidor: postgres-db
+		- Usuario: hotmart
     	- Senha: desafio
-    	- Banco: challenge
+    	- banco de dados: challenge
 
+- MySql
 
+	- http://localhost:9080/
+
+		- servidor: mysqlsrv
+		- Usuario: root
+    	- Senha: desafio
+    	- banco de dados: challenge
 
 O conexto do service para esse servico  é  /score e disponível na porta 8086
-
 
 O projeto esta no docker.
 

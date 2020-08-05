@@ -99,39 +99,27 @@ public class ConsumerQueue {
 
 }
 
-Para consultar as informações no base de dados:
+Dentro do docker-compose foi adicionado uma ferramenta de consulta de dados. Ela funciona tanto para o banco MYSQL quanto para o Postgres.
 
-spring:
-  datasource:
-    url: jdbc:h2:mem:challenge
-    driverClassName: org.h2.Driver
-    username: hotmart
-    password: desafio
-    database-platform: org.hibernate.dialect.H2Dialect
-  jpa:
-    open-in-view: true
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-    database: h2
-spring.h2.console.enabled: true
+Abaixo estão os endereções para acessar os serviços.
 
+- PostGres
 
+	- http://localhost:9080/
 
-- H2
-
-	- http://localhost:8084/processa/h2-console
-
-		- Usuario Login: hotmart
+		- servidor: postgres-db
+		- Usuario: hotmart
     	- Senha: desafio
-    	- Banco: challenge
+    	- banco de dados: challenge
 
-   - Dados do Banco
+- MySql
 
-   		- Hostname: postgres-db
-   		- Usuario: hotmart
-   		- senha: desafio
+	- http://localhost:9080/
+
+		- servidor: mysqlsrv
+		- Usuario: root
+    	- Senha: desafio
+    	- banco de dados: challenge
 
 
 
@@ -140,7 +128,6 @@ O contexto do servico é /processa e sta disponível na porta 8084
 
 O projeto esta no docker.
 
-O endereco para visualizar as informações da banco é - http://localhost:8084/processa/h2-console
 
 
 

@@ -1,8 +1,8 @@
 server:
-  port: 8086
+  port: 8085
   servlet:
-    context-path: /score
-    
+    context-path: /job
+  
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/challenge?useSSL=false
@@ -15,13 +15,6 @@ spring:
     show-sql: true
     generate-ddl: false
     hibernate:
-      cache: 
-        use_query_cache: true
-        use_second_level_cache: true
-        region:
-          factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
       ddl-auto: none
     database: mysql
-    
-spring.h2.console.enabled: true
 

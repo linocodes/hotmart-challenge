@@ -2,17 +2,18 @@ server:
   port: 8084
   servlet:
     context-path: /processa
+    
 spring:
   datasource:
-    url: jdbc:h2:mem:challenge
-    driverClassName: org.h2.Driver
-    username: hotmart
+    url: jdbc:mysql://localhost:3306/challenge?useSSL=false
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
     password: desafio
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
   jpa:
     open-in-view: true
     show-sql: true
-    generate-ddl: true
+    generate-ddl: false
     hibernate:
       cache: 
         use_query_cache: true
@@ -20,8 +21,7 @@ spring:
         region:
           factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
       ddl-auto: none
-    database: h2
-spring.h2.console.enabled: true
+    database: mysql
 
 rabbitmq:
   fila:

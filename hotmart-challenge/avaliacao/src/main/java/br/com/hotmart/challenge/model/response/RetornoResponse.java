@@ -6,7 +6,6 @@ import lombok.Data;
 public class RetornoResponse {
 
 	private String status;
-	private Object objeto;
 	private String mensagem;
 
 }

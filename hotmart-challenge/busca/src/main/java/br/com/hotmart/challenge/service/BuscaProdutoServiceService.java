@@ -61,7 +61,6 @@ public class BuscaProdutoServiceService {
 						Order.asc("nome"),
 						Order.asc("categoria")));
 
-
 		Page<Produto> results = null;
 		if (request.getId() != null) {
 			ProdutoSpecification id = new ProdutoSpecification(new SpecSearchCriteria("idProduto", SearchOperation.EQUALITY, request.getId()));
@@ -75,6 +74,10 @@ public class BuscaProdutoServiceService {
 			}
 		}
 
+		if (pesquisados.isEmpty()) {
+			results = produtoService.pagination(sortedByScoreNomeCategoria);
+		}
+
 		produto.setProduto(results);
 		produto.setTermoPequisado(pesquisados);
 		return produto;
@@ -85,7 +88,7 @@ public class BuscaProdutoServiceService {
 	 */
 	private void calculoScore() {
 
-		double score = 0;
+		Integer score = 0;
 		List<Produto> lista = produtoService.list();
 
 		List<Notas> listaNotas = mediaProduto();
@@ -93,7 +96,7 @@ public class BuscaProdutoServiceService {
 		List<Categoria> listaCategoria = noticias();
 
 		Map<Long, Long> mapNotas = listaNotas.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getNotas()));
-		Map<Long, Integer> mapVenda = listQuantidade.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getQuantidade()));
+		Map<Long, Long> mapVenda = listQuantidade.stream().collect(Collectors.toMap(a -> a.getId(), a -> a.getQuantidade()));
 		Map<String, Integer> mapCat   = listaCategoria.stream().collect(Collectors.toMap(a -> a.getCategoria(), a -> a.getQuantidade()));
 
 		Date today = new Date();
@@ -104,17 +107,18 @@ public class BuscaProdutoServiceService {
 				notaGeral = 0L;
 			}
 			double valorX = notaGeral / 12;
+			score = (int) (score + valorX);
 
-			Integer vendaGeral = mapVenda.get(produto.getIdProduto());
+			Long vendaGeral = mapVenda.get(produto.getIdProduto());
 			if (vendaGeral == null) {
-				vendaGeral = 0;
+				vendaGeral = 0L;
 			}
 			int dias = Utils.calculateDayDifference(today,produto.getDataCriacao());
 			double valorY = vendaGeral / dias;
+			score = (int) (score + valorY);
 
 			Integer valorZ = mapCat.get(produto.getCategoria());
-
-			score = valorX + valorY + valorZ;
+			score = (int) (score + valorZ);
 			produto.setScore(score);
 			produtoService.update(produto, produto.getIdProduto());
 
