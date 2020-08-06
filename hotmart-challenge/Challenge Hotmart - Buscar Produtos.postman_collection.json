@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "e79b6242-07d8-45c9-9666-f327e1c526db",
+		"name": "Challenge Hotmart - Buscar Produtos",
+		"description": "Documentação do marketplace - OpenAPI 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar todos dos produtos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/busca-produto/v1?id=<long>&nome=<string>&descricao=<string>&dataCriacao=<dateTime>&page=<integer>&size=<integer>&sort=[\"<string>\",\"<string>\"]",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"busca-produto",
+						"v1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "<long>",
+							"description": "(Required) "
+						},
+						{
+							"key": "nome",
+							"value": "<string>",
+							"description": "(Required) "
+						},
+						{
+							"key": "descricao",
+							"value": "<string>",
+							"description": "(Required) "
+						},
+						{
+							"key": "dataCriacao",
+							"value": "<dateTime>",
+							"description": "(Required) "
+						},
+						{
+							"key": "page",
+							"value": "<integer>",
+							"description": "(Required) "
+						},
+						{
+							"key": "size",
+							"value": "<integer>",
+							"description": "(Required) "
+						},
+						{
+							"key": "sort",
+							"value": "[\"<string>\",\"<string>\"]",
+							"description": "(Required) "
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Não existe produtos no momento",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/busca-produto/v1?id=<long>&nome=<string>&descricao=<string>&dataCriacao=<dateTime>&page=<integer>&size=<integer>&sort=<string>,<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"busca-produto",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "<long>"
+								},
+								{
+									"key": "nome",
+									"value": "<string>"
+								},
+								{
+									"key": "descricao",
+									"value": "<string>"
+								},
+								{
+									"key": "dataCriacao",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "page",
+									"value": "<integer>"
+								},
+								{
+									"key": "size",
+									"value": "<integer>"
+								},
+								{
+									"key": "sort",
+									"value": "<string>,<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Produtos encontrados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/busca-produto/v1?id=<long>&nome=<string>&descricao=<string>&dataCriacao=<dateTime>&page=<integer>&size=<integer>&sort=<string>,<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"busca-produto",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "<long>"
+								},
+								{
+									"key": "nome",
+									"value": "<string>"
+								},
+								{
+									"key": "descricao",
+									"value": "<string>"
+								},
+								{
+									"key": "dataCriacao",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "page",
+									"value": "<integer>"
+								},
+								{
+									"key": "size",
+									"value": "<integer>"
+								},
+								{
+									"key": "sort",
+									"value": "<string>,<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"id\": 85098861,\n  \"idProduto\": 47685258,\n  \"nome\": \"proident ex Lorem nostrud enim\",\n  \"descricao\": \"ullamco\",\n  \"categoria\": \"ad id anim est\",\n  \"dataCriacao\": \"aute consectetur\"\n },\n {\n  \"id\": 12806379,\n  \"idProduto\": -74545712,\n  \"nome\": \"nulla magna esse deserunt eu\",\n  \"descricao\": \"consequat\",\n  \"categoria\": \"dolore velit comm\",\n  \"dataCriacao\": \"ullamco\"\n }\n]"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "http://localhost:8086/score",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

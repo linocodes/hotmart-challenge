@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "75f61d34-e083-4e23-adc4-b69954e7ed29",
+		"name": "Challenge Hotmart - Venda",
+		"description": "Documentação do marketplace - OpenAPI 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Realiza a compra de um Produto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e85617a0-e36e-4dbb-afca-c96dff1815da",
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+							"    console.log(response.json());\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idProduto\": 28,\n    \"idVendedor\": 26,\n    \"idComprador\": 35,\n    \"quantidade\": 15\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/produto/v1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"produto",
+						"v1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Pedido processado com sucesso.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProduto\": 100,\n    \"idVendedor\": 50,\n    \"idComprador\": 48,\n    \"quantidade\": 15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/produto/v1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"produto",
+								"v1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"idProduto\": \"<long>\",\n \"idVendedor\": \"<long>\",\n \"idComprador\": \"<long>\",\n \"quantidade\": \"<integer>\"\n}"
+				},
+				{
+					"name": "Bad request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProduto\": 100,\n    \"idVendedor\": 999999999,\n    \"idComprador\": 48,\n    \"quantidade\": 15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/produto/v1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"produto",
+								"v1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "http://localhost:8082/venda",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
