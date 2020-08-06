@@ -18,6 +18,7 @@ import br.com.hotmart.challenge.exception.BaseException;
 import br.com.hotmart.challenge.model.data.Article;
 import br.com.hotmart.challenge.model.entity.Categoria;
 import br.com.hotmart.challenge.model.response.ArticlesResponse;
+import br.com.hotmart.challenge.model.response.RetornoResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -44,13 +45,16 @@ public class CargaCategoriaNoticiaService {
 		schedule();
 	}
 
-	public void offScheduleNews() {
+	public RetornoResponse offScheduleNews() {
 		schedule();
+		RetornoResponse retorno = new RetornoResponse();
+		retorno.setStatus("ok");
+		retorno.setMensagem("Procedimento realizado com sucesso.");
+		return retorno;
 	}
 
 	private void schedule() {
-		log.info("Carregar notícias atualizado às {}",
-				LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		log.info("Carregar notícias atualizado às {}", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		List<Categoria> categoria = service.list();
 		categoria.forEach(s -> chamadaApi(s));
 	}
@@ -63,16 +67,16 @@ public class CargaCategoriaNoticiaService {
 			entity.setQuantidade(noticiasPorCategoria(entity.getCategoria()));
 			service.update(entity, entity.getCategoria());
 		} catch (Exception e) {
-			log.info("Schedule falhou para a categoria %s.", entity.getCategoria());
+			log.info(String.format("Schedule falhou para a categoria %s.",entity.getCategoria()));
 		}
 
 	}
 
     @HystrixCommand(fallbackMethod = "falhaCargaNoticia" )
 	private int noticiasPorCategoria(String categoria) {
-		try {
 			String url = String.format(URL_NEWS_API_TOP, categoria, APIKEY, PAGE_SIZE);
 			ArticlesResponse response = new RestTemplate().getForObject(url, ArticlesResponse.class);
+			try {
 			if ("ok".equalsIgnoreCase(response.getStatus())) {
 				return validaData(response.getArticles());
 			}
