@@ -1,6 +1,8 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-COPY target/processa.jar processa.jar
-ENV JAVA_OPTS=""
-ENTRYPOINT exec java -jar /processa.jar
+FROM java:8-jre
+MAINTAINER Alexander Lukyanchikov <sqshq@sqshq.com>
+
+ADD ./target/processa.jar /app/
+CMD ["java", "-Xmx200m", "-jar", "/app/processa.jar"]
+
+EXPOSE 8084
 

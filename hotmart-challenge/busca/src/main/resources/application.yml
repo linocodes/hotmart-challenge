@@ -5,23 +5,25 @@ server:
     
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/challenge?useSSL=false
-    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/challenge
+    driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: desafio
-    database-platform: org.hibernate.dialect.MySQL5Dialect
   jpa:
     open-in-view: true
-    show-sql: true
-    generate-ddl: false
+    show-sql: false
+    properties:
+      javax:
+        persistence:
+          sharedCache: 
+            mode: ENABLE_SELECTIVE     
     hibernate:
-      cache: 
-        use_query_cache: true
-        use_second_level_cache: true
-        region:
-          factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
       ddl-auto: none
+      cache:
+        use_second_level_cache: true
+        use_query_cache: true 
+        region:
+          factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory       
     database: mysql
-    
-spring.h2.console.enabled: true
+
 

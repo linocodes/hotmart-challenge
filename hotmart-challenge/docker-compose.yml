@@ -1,136 +1,108 @@
 version: '3'
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    restart: always
-    hostname: "rabbitmq"
-    labels:
-      NAME: "rabbitmq"
+
+  desafio-rabbitmq:
+    image: rabbitmq:management
     ports:
       - "5672:5672"
       - "15672:15672"
-  postgres-db:
-    container_name: hotmart-challenge_postgres-db
+ 
+  desafio-mysqldb:
+    image: mysql:8
+    ports:
+      - "3306:3306" 
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: desafio
+      MYSQL_DATABASE: challenge
+      
+  desafio-postgresdb:
     image: postgres:latest
-    restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: hotmart
       POSTGRES_PASSWORD: desafio
-      POSTGRES_DB: challenge
-    networks:
-      - compose-network 
-  mysql-db:
-    container_name: hotmart-challenge_mysql-db  
-    image: mysql:latest
-    restart: always
-    ports:
-      - "3306:33060"    
-    environment:
-      - MYSQL_ROOT_PASSWORD=desafio
-      - MYSQL_DATABASE=challenge
-    networks:
-      - compose-network
-  adminer:
+      POSTGRES_DB: challenge 
+      
+  desafio-adminer:
     image: adminer
-    restart: always
     ports:
       - 9080:8080
     depends_on:
-      - postgres-db
-      - mysql-db
-    networks:
-      - compose-network      
-  cadastro:
-    container_name: hotmart-challenge_cadastro
+      - desafio-mysqldb
+      - desafio-postgresdb
+           
+  desafio-cadastro:
     build: cadastro
-    restart: always
     ports:
       - "8081:8081"
     environment:
       SPRING_DATASOURCE_USERNAME: hotmart
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/challenge
+      SPRING_DATASOURCE_URL: jdbc:postgresql://desafio-postgresdb:5432/challenge
+      SPRING_RABBITMQ_HOST: desafio-rabbitmq      
     depends_on:
-      - postgres-db 
-    networks:
-      - compose-network      
-  venda:
-    container_name: hotmart-challenge_venda
+      - desafio-postgresdb
+      - desafio-rabbitmq  
+
+  desafio-venda:
     build: venda
-    restart: always    
     ports:
       - "8082:8082"
     environment:
       SPRING_DATASOURCE_USERNAME: hotmart
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/challenge
+      SPRING_DATASOURCE_URL: jdbc:postgresql://desafio-postgresdb:5432/challenge
+      SPRING_RABBITMQ_HOST: desafio-rabbitmq      
     depends_on:
-      - postgres-db 
-      - rabbitmq  
-    networks:
-      - compose-network      
-  avaliacao:
-    container_name: hotmart-challenge_avaliacao
+      - desafio-postgresdb
+      - desafio-rabbitmq  
+
+  desafio-avaliacao:
     build: avaliacao
-    restart: always    
     ports:
       - "8083:8083"
     environment:
       SPRING_DATASOURCE_USERNAME: hotmart
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/challenge
+      SPRING_DATASOURCE_URL: jdbc:postgresql://desafio-postgresdb:5432/challenge
+      SPRING_RABBITMQ_HOST: desafio-rabbitmq
     depends_on:
-      - postgres-db 
-      - rabbitmq  
-    networks:
-      - compose-network
-  processa:
-    container_name: hotmart-challenge_processa
+      - desafio-postgresdb
+      - desafio-rabbitmq  
+    
+  desafio-processa:
     build: processa
-    restart: always    
     ports:
       - "8084:8084"
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://desafio-mysqldb:3306/challenge  
+      SPRING_RABBITMQ_HOST: desafio-rabbitmq
     depends_on:
-      - mysql-db 
-      - rabbitmq 
-    networks:
-      - compose-network      
-  noticia:
-    container_name: hotmart-challenge_noticia
+      - desafio-mysqldb 
+      - desafio-rabbitmq
+    
+  desafio-noticia:
     build: noticia
-    restart: always    
     ports:
       - "8085:8085"
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://desafio-mysqldb:3306/challenge
     depends_on:
-      - mysql-db 
-    networks:
-      - compose-network      
-  busca:
-    container_name: hotmart-challenge_busca
+      - desafio-mysqldb 
+
+  desafio-busca:
     build: busca
-    restart: always    
     ports:
       - "8086:8086"
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: desafio
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/challenge
+      SPRING_DATASOURCE_URL: jdbc:mysql://desafio-mysqldb:3306/challenge
     depends_on:
-      - mysql-db 
-    networks:
-      - compose-network      
-networks: 
-  compose-network:
-    driver: bridge 
-  
-  
+      - desafio-mysqldb 

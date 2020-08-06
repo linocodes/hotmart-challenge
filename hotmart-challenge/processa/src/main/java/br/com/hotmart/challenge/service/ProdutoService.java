@@ -55,12 +55,13 @@ public class ProdutoService extends AbstractService<Produto, Long> {
 	}
 
 	private void ocorrenciaVenda(ComunicacaoQueue dadosRecebidos) {
-
-		service.insert(OcorrenciaVenda.builder()
-				.idProduto(dadosRecebidos.getIdProduto())
-				.dataVenda(dadosRecebidos.getDataVenda())
-				.quantidade(dadosRecebidos.getQuantidade())
-				.build());
+		if (dadosRecebidos.getQuantidade() > 0) {
+			service.insert(OcorrenciaVenda.builder()
+					.idProduto(dadosRecebidos.getIdProduto())
+					.dataVenda(dadosRecebidos.getDataVenda())
+					.quantidade(dadosRecebidos.getQuantidade())
+					.build());
+		}
 
 	}
 

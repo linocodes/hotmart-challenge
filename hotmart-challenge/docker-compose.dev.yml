@@ -2,14 +2,14 @@ version: '3'
 services:
   rabbitmq:
     ports:
-    - 5672:5672
-    - 15672:15672
+      - 15672:15672
+      - 5672:5672
   postgres-db:
     ports:
       - 5432:5432
   mysql-db:
     ports:
-      - "3306:33060"    
+      - 3306:3306    
   adminer:
     ports:
       - 9080:8080      
